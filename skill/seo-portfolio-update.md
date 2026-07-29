@@ -5,7 +5,7 @@ description: Update the AI-automation SEO portfolio page with fresh account data
 
 # SEO Portfolio: Update
 
-Update `ai-automation-portfolio.html`, the job-application portfolio page covering client accounts organized by AI-automation tier (n8n pipelines, Claude Code skills, supporting data tooling).
+Update `ai-automation-portfolio/index.html`, the job-application portfolio page covering client accounts organized by AI-automation tier (n8n pipelines, Claude Code skills, supporting data tooling). Repo is `jdbartolome0023/seo-portfolios`, structured as three top-level folders: `mattek/` (separate interview follow-up page, never touch as part of this workflow), `ai-automation-portfolio/` (this page), `skill/` (a copy of this file, kept in sync manually after any edit here).
 
 ## Step 1: Confirm scope
 
@@ -54,7 +54,7 @@ If output/status changed for the account, update its row in the overview table n
 
 Before finishing, grep the file for all four patterns and confirm zero:
 ```bash
-FILE="/Users/josette/Desktop/Personal/SEO Portfolio/repo/ai-automation-portfolio.html"
+FILE="/Users/josette/Desktop/Personal/SEO Portfolio/repo/ai-automation-portfolio/index.html"
 grep -c "—" "$FILE"; grep -c "&mdash;" "$FILE"; grep -c "&#8212;" "$FILE"; grep -c "&#x2014;" "$FILE"
 ```
 All four must return 0.
@@ -64,16 +64,20 @@ All four must return 0.
 ```bash
 cd "/Users/josette/Desktop/Personal/SEO Portfolio/repo"
 gh auth switch --hostname github.com --user jdbartolome0023
-git add ai-automation-portfolio.html
+git add ai-automation-portfolio/index.html
 git commit -m "[account]: [what changed]"
 git push origin main
 ```
 
-`index.html` in this repo is the separate Mattek interview follow-up page, never touch it as part of this workflow.
+If this skill file itself was edited this session, also copy the update into the repo and commit it alongside:
+```bash
+cp "/Users/josette/Desktop/Personal/SEO Portfolio/.claude/commands/seo-portfolio-update.md" "/Users/josette/Desktop/Personal/SEO Portfolio/repo/skill/seo-portfolio-update.md"
+git add skill/seo-portfolio-update.md
+```
 
 ## Step 8: Confirm
 
 Report:
 - What changed and which account(s)
-- The live URL: https://jdbartolome0023.github.io/seo-portfolio-reports/ai-automation-portfolio.html
+- The live URL: https://jdbartolome0023.github.io/seo-portfolios/ai-automation-portfolio/
 - Any account still missing data, so it's not forgotten next time
