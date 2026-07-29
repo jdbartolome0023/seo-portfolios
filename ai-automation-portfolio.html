@@ -1,0 +1,883 @@
+<title>SEO & Content, Built with AI Automation: Josette Bartolome</title>
+<style>
+  :root {
+    --paper: #F1F2EC;
+    --paper-raised: #E8EAE2;
+    --ink: #1B2320;
+    --ink-muted: #5B695E;
+    --ink-faint: #8A9690;
+    --accent: #2F6B4A;
+    --accent-strong: #1F5138;
+    --accent-soft: #DCE8DE;
+    --line: rgba(27, 35, 32, 0.14);
+    --line-strong: rgba(27, 35, 32, 0.26);
+    --note: #8A6A2F;
+
+    --font-display: ui-serif, "New York", "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-data: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141815;
+      --paper-raised: #1B211D;
+      --ink: #E9ECE7;
+      --ink-muted: #A6B3A9;
+      --ink-faint: #6C776F;
+      --accent: #6FBF8B;
+      --accent-strong: #8ED1A5;
+      --accent-soft: #1E2E22;
+      --line: rgba(233, 236, 231, 0.14);
+      --line-strong: rgba(233, 236, 231, 0.26);
+      --note: #D9B368;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #141815;
+    --paper-raised: #1B211D;
+    --ink: #E9ECE7;
+    --ink-muted: #A6B3A9;
+    --ink-faint: #6C776F;
+    --accent: #6FBF8B;
+    --accent-strong: #8ED1A5;
+    --accent-soft: #1E2E22;
+    --line: rgba(233, 236, 231, 0.14);
+    --line-strong: rgba(233, 236, 231, 0.26);
+    --note: #D9B368;
+  }
+
+  :root[data-theme="light"] {
+    --paper: #F1F2EC;
+    --paper-raised: #E8EAE2;
+    --ink: #1B2320;
+    --ink-muted: #5B695E;
+    --ink-faint: #8A9690;
+    --accent: #2F6B4A;
+    --accent-strong: #1F5138;
+    --accent-soft: #DCE8DE;
+    --line: rgba(27, 35, 32, 0.14);
+    --line-strong: rgba(27, 35, 32, 0.26);
+    --note: #8A6A2F;
+  }
+
+  * { box-sizing: border-box; }
+  html { font-size: 17px; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 2rem) 5rem;
+  }
+
+  a { color: var(--accent-strong); }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 0 0 0.6rem;
+  }
+  .eyebrow.accent { color: var(--accent-strong); }
+
+  .masthead {
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid var(--line-strong);
+    margin-bottom: 2.75rem;
+    animation: rise 0.6s ease-out both;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.85rem;
+    text-wrap: balance;
+  }
+
+  .dek {
+    font-size: 1.02rem;
+    color: var(--ink-muted);
+    max-width: 38rem;
+    margin: 0 0 1.4rem;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+  .meta-row .divider { opacity: 0.6; }
+
+  /* overview table */
+  .overview {
+    margin: 0 0 3.25rem;
+  }
+  .overview h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.15rem;
+    margin: 0 0 1.1rem;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.6rem 0 0.6rem;
+    border-top: 1px solid var(--line-strong);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    min-width: 34rem;
+  }
+
+  thead th {
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0.7rem 0.6rem 0.6rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  th.num, td.num { text-align: right; }
+
+  tbody td {
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-data);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  tbody td.metric-name {
+    font-family: var(--font-body);
+    white-space: normal;
+  }
+
+  tbody td.tool-cell {
+    font-family: var(--font-body);
+    white-space: normal;
+    color: var(--ink-muted);
+  }
+
+  .status-pill {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 0.15rem 0.55rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .status-pill.live { background: var(--accent-soft); color: var(--accent-strong); }
+  .status-pill.pending { background: var(--paper-raised); color: var(--ink-muted); border: 1px solid var(--line-strong); }
+
+  /* tier dividers */
+  .tier-head {
+    margin: 3.75rem 0 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--ink);
+  }
+  .tier-head:first-of-type { margin-top: 0; }
+
+  .tier-number {
+    font-family: var(--font-data);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+  }
+
+  .tier-head h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
+    margin: 0.3rem 0 0.5rem;
+  }
+
+  .tier-desc {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    max-width: 36rem;
+    margin: 0;
+  }
+
+  .case {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .case:last-of-type { border-bottom: none; }
+  .case-head { margin-bottom: 1.4rem; }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.2rem, 3vw, 1.4rem);
+    line-height: 1.28;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+
+  .tenure {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    margin: 0;
+  }
+
+  .lede {
+    font-size: 1rem;
+    max-width: 40rem;
+    margin: 1.3rem 0 1.8rem;
+  }
+
+  h4.label {
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 0.9rem;
+  }
+
+  .owned ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .owned li {
+    position: relative;
+    padding-left: 1.05rem;
+    font-size: 0.95rem;
+  }
+
+  .owned li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem 1.6rem;
+    margin: 1.8rem 0;
+  }
+  @media (min-width: 560px) {
+    .stat-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .stat-tile {
+    border-top: 2px solid var(--ink);
+    padding-top: 0.6rem;
+  }
+  .stat-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-top: 0.3rem;
+  }
+
+  .hero-stat {
+    margin: 2rem 0 1.8rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+  }
+  .hero-value {
+    font-family: var(--font-display);
+    font-size: clamp(2.3rem, 7vw, 2.9rem);
+    line-height: 1;
+    color: var(--accent-strong);
+    font-variant-numeric: tabular-nums;
+  }
+  .hero-caption {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    max-width: 22rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .delta { font-weight: 600; }
+  .delta.up { color: var(--accent-strong); }
+  .delta.down { color: var(--note); }
+
+  .table-foot {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin: 0.7rem 0 0;
+  }
+
+  .caveat {
+    font-size: 0.87rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    margin: 1.1rem 0 0;
+    max-width: 36rem;
+  }
+
+  .quote-block {
+    margin: 1.4rem 0 0;
+    padding-left: 1rem;
+    border-left: 2px solid var(--line-strong);
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    max-width: 36rem;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--line-strong);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+  footer strong { color: var(--ink-muted); font-weight: 600; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .masthead { animation: none; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <p class="eyebrow accent">Portfolio</p>
+    <h1>SEO &amp; content work, built with AI automation</h1>
+    <p class="dek">Seven accounts, grouped by the automation behind them: form-based pipelines that run at volume, Claude Code skills that handle research-to-draft under human review, and the data tooling that informs strategy without touching the words.</p>
+    <div class="meta-row">
+      <span>Josette Bartolome</span>
+      <span class="divider">·</span>
+      <span>SEO Strategist</span>
+    </div>
+  </header>
+
+  <section class="overview">
+    <h2>At a glance</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Account</th>
+            <th>Tool</th>
+            <th>Output</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric-name">Satellite Office</td>
+            <td class="tool-cell">n8n pipeline + 2 Claude Code skills</td>
+            <td class="tool-cell">40 pieces: 5 pillar, 30 cluster, 5 case studies</td>
+            <td><span class="status-pill pending">With client</span></td>
+          </tr>
+          <tr>
+            <td class="metric-name">Investment Markets</td>
+            <td class="tool-cell">n8n + Claude Code (brief + QA)</td>
+            <td class="tool-cell">14 briefs across super, SMSF, retirement, risk</td>
+            <td><span class="status-pill live">Live</span></td>
+          </tr>
+          <tr>
+            <td class="metric-name">JMC Academy</td>
+            <td class="tool-cell">Claude Code: jmc-seo-writer skill</td>
+            <td class="tool-cell">68 articles across 6 series, 3 FAQ schemas</td>
+            <td><span class="status-pill live">Live</span></td>
+          </tr>
+          <tr>
+            <td class="metric-name">Morrisons Law</td>
+            <td class="tool-cell">Claude Code</td>
+            <td class="tool-cell">AEO audit (ChatGPT + Gemini), keyword research</td>
+            <td><span class="status-pill live">Live</span></td>
+          </tr>
+          <tr>
+            <td class="metric-name">The Beauty Chef</td>
+            <td class="tool-cell">Claude Code: beauty-chef-collections skill</td>
+            <td class="tool-cell">Category/product content, quiz UX copy</td>
+            <td><span class="status-pill live">+85% organic revenue</span></td>
+          </tr>
+          <tr>
+            <td class="metric-name">ATA Scientific</td>
+            <td class="tool-cell">Claude Code + Python + GA4 (MCP)</td>
+            <td class="tool-cell">4,898-URL site audit for a migration</td>
+            <td><span class="status-pill live">+46% organic leads</span></td>
+          </tr>
+          <tr>
+            <td class="metric-name">SharkNinja</td>
+            <td class="tool-cell">DataForSEO + Python (analysis only)</td>
+            <td class="tool-cell">Keyword research feeding content strategy</td>
+            <td><span class="status-pill live">+57% conversion rate</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- TIER 1 -->
+  <div class="tier-head">
+    <p class="tier-number">01</p>
+    <h2>N8n automation pipelines</h2>
+    <p class="tier-desc">Form-based content automation at volume: select client, slug, keyword, and topic; the pipeline drafts and notifies on completion. Used where the same content format needs to ship across dozens of pages.</p>
+  </div>
+
+  <section class="case">
+    <div class="case-head">
+      <p class="eyebrow accent">Satellite Office</p>
+      <h3>Offshore staffing content, five verticals</h3>
+      <p class="tenure">Offshore staffing/BPO provider · Retail, Finance, Technology, Fintech, and Healthcare content</p>
+    </div>
+
+    <p class="lede">Satellite Office ranks for 366 keywords in its core Australian market, 79 of them in the top 10 (average position ~29): already close to the strongest named competitor in the category. I built the pipeline and workflow to extend that into five verticals the account doesn't yet own dedicated content for: Retail, Finance, Technology, Fintech, and Healthcare outsourcing.</p>
+
+    <h4 class="label">What I built</h4>
+    <div class="owned">
+      <ul>
+        <li>An n8n Cloud pipeline for high-volume batch production, triggered whenever five or more pieces of the same format are needed</li>
+        <li>Two custom Claude Code skills that pull the live content calendar from a private GitHub repo, match three categorized executive quotes per piece by theme (not convenience), and enforce house style</li>
+        <li>A self-QA pass against a content-review checklist before every piece routes to Notion for two-stage human review</li>
+      </ul>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <span class="stat-value">5</span>
+        <span class="stat-label">pillar pages</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">30</span>
+        <span class="stat-label">cluster articles</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">5</span>
+        <span class="stat-label">case studies</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">5</span>
+        <span class="stat-label">verticals covered</span>
+      </div>
+    </div>
+
+    <h4 class="label" style="margin-top:1.8rem;">Current organic baseline (site-wide, GA4 + GSC)</h4>
+    <p class="lede" style="margin-top:0;">The fintech batch above is still unpublished, so none of this reflects it yet. It's the baseline it's built to move. One early signal worth noting: an <strong>AI Assistant</strong> referral channel has already appeared in GA4, converting better than most established channels.</p>
+
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <span class="stat-value">2,280</span>
+        <span class="stat-label">organic sessions, H1 2026</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">57.1%</span>
+        <span class="stat-label">organic engagement rate</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">96</span>
+        <span class="stat-label">organic leads (3.9% rate)</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">9.4%</span>
+        <span class="stat-label">AI Assistant channel lead rate (53 sessions, 66% engagement)</span>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th class="num">Clicks</th>
+            <th class="num">Impressions</th>
+            <th class="num">Avg. position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric-name">Jan 2026</td><td class="num">284</td><td class="num">107,702</td><td class="num">20.5</td></tr>
+          <tr><td class="metric-name">Feb 2026</td><td class="num">323</td><td class="num">98,034</td><td class="num">18.5</td></tr>
+          <tr><td class="metric-name">Mar 2026</td><td class="num">386</td><td class="num">127,144</td><td class="num">14.6</td></tr>
+          <tr><td class="metric-name">Apr 2026</td><td class="num">415</td><td class="num">113,178</td><td class="num">15.9</td></tr>
+          <tr><td class="metric-name">May 2026</td><td class="num">406</td><td class="num">132,572</td><td class="num">19.6</td></tr>
+          <tr><td class="metric-name">Jun 2026</td><td class="num">340</td><td class="num">127,975</td><td class="num">23.9</td></tr>
+          <tr><td class="metric-name">Jul 2026*</td><td class="num">265</td><td class="num">100,833</td><td class="num">25.3</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-foot">Source: Google Search Console, satelliteoffice.com.au, site-wide. *July partial (through the 26th).</p>
+
+    <p class="caveat">Full honesty on this one: average position improved through March–April, then drifted back out to 25.3 by July while the fintech batch sat unpublished, which is exactly the case for shipping it. Nothing here is a result of my content yet; it's the problem the content was built to solve, and the current baseline against which to measure it once it's live.</p>
+  </section>
+
+  <section class="case">
+    <div class="case-head">
+      <p class="eyebrow accent">Investment Markets</p>
+      <h3>Finance &amp; investing content, brief-to-publish at volume</h3>
+      <p class="tenure">Australian investing/superannuation content site</p>
+    </div>
+
+    <p class="lede">Investment Markets' own writer produces the final copy, so my role sits earlier in the chain: the n8n pipeline and Claude Code generate the research and brief at volume, and I run quality and compliance review before anything reaches the writer.</p>
+
+    <h4 class="label">What I owned</h4>
+    <div class="owned">
+      <ul>
+        <li>Brief production across 14 articles: super contributions, SMSF setup, retirement planning, investment risk</li>
+        <li>A fact-check and compliance pass on every brief before handoff</li>
+      </ul>
+    </div>
+
+    <div class="quote-block">
+      One review caught a Stage 3 tax-cut error (marginal rate cited as 30% instead of 32.5%, with the flow-on combined-rate and dollar-saving figures both wrong), plus a dead MoneySmart link. Both were corrected before the brief went to the writer, and a FAQ section and disclaimer were added.
+    </div>
+
+    <p class="caveat">No traffic data available for this account: my role here is upstream of publishing, not measured against it.</p>
+  </section>
+
+  <!-- TIER 2 -->
+  <div class="tier-head">
+    <p class="tier-number">02</p>
+    <h2>Claude Code: skill-driven workflows</h2>
+    <p class="tier-desc">Purpose-built skills for accounts where format and brand rules are specific enough to warrant automating the workflow, not just the writing: research, an approval checkpoint, then a draft against a fixed rule set.</p>
+  </div>
+
+  <section class="case">
+    <div class="case-head">
+      <p class="eyebrow accent">JMC Academy</p>
+      <h3>Creative-arts education content, across six programs</h3>
+      <p class="tenure">Acting, film &amp; TV, animation, songwriting, entertainment business management</p>
+    </div>
+
+    <p class="lede">I built a Claude Code skill (jmc-seo-writer) that runs a fixed four-step process: gather requirements, research (including internal-link matching against the sitemap and alumni-story matching), present the outline and sourcing plan for approval, then write to brand rules that JMC never minimise a degree or frame an industry negatively.</p>
+
+    <h4 class="label">Output by series</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Series</th>
+            <th class="num">Articles</th>
+            <th>Completed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="metric-name">Animation skills &amp; workflow</td><td class="num">13</td><td class="tool-cell">2026</td></tr>
+          <tr><td class="metric-name">Acting career pages (IA)</td><td class="num">12</td><td class="tool-cell">25 Jun 2026</td></tr>
+          <tr><td class="metric-name">Acting skills &amp; workflow</td><td class="num">12</td><td class="tool-cell">25 Jun 2026</td></tr>
+          <tr><td class="metric-name">Film &amp; TV skills &amp; workflow</td><td class="num">12</td><td class="tool-cell">24 Jun 2026</td></tr>
+          <tr><td class="metric-name">Songwriting (IA)</td><td class="num">10</td><td class="tool-cell">2026</td></tr>
+          <tr><td class="metric-name">Entertainment business management</td><td class="num">9</td><td class="tool-cell">14 Jul 2026</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-foot">68 articles across the six series above, each keyword-researched via DataForSEO before drafting.</p>
+
+    <h4 class="label" style="margin-top:1.8rem;">Also built</h4>
+    <div class="owned">
+      <ul>
+        <li>3 FAQPage JSON-LD schemas for course pages, including the Bachelor of Audio Engineering + EBM double degree</li>
+      </ul>
+    </div>
+
+    <div class="hero-stat">
+      <span class="hero-value">+64%</span>
+      <span class="hero-caption">organic leads, first half of my tenure vs. the second half</span>
+    </div>
+
+    <h4 class="label">Organic search, first half of tenure vs. second half</h4>
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <span class="stat-value">90,883</span>
+        <span class="stat-label">sessions <span class="delta up">+19.5%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">57.4%</span>
+        <span class="stat-label">engagement rate <span class="delta up">flat</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">2,606</span>
+        <span class="stat-label">leads <span class="delta up">+63.6%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">2.27%</span>
+        <span class="stat-label">lead rate <span class="delta up">+21.9%</span></span>
+      </div>
+    </div>
+    <p class="table-foot">Source: Google Analytics 4, jmcacademy.edu.au. Organic Search channel, Jul–Dec 2025 vs. Jan–Jun 2026.</p>
+
+    <p class="caveat">Leads grew more than three times faster than sessions: the series didn't just add traffic, it added the right traffic. This lines up with when the bulk of the six series above went live.</p>
+  </section>
+
+  <section class="case">
+    <div class="case-head">
+      <p class="eyebrow accent">Morrisons Law</p>
+      <h3>Criminal &amp; traffic law firm: content and AI-visibility auditing</h3>
+      <p class="tenure">Wollongong &amp; Southern Highlands, NSW</p>
+    </div>
+
+    <p class="lede">Alongside standard content and keyword work, I audited how ChatGPT and Gemini answer the questions a prospective client would actually ask: "Tell me about Morrisons Law," "How are Morrisons Law's reviews?", "What experience does Morrisons Law have with drink driving offences?" Each response was logged against its cited sources and flagged where it was inaccurate or out of date, which is a different kind of visibility problem than a keyword ranking.</p>
+
+    <h4 class="label">What I owned</h4>
+    <div class="owned">
+      <ul>
+        <li>An AEO/AI-visibility audit across ChatGPT and Gemini, checking what each tells prospective clients about the firm</li>
+        <li>Keyword research for the Campbelltown location (25 terms, spanning court-related and criminal-lawyer searches)</li>
+        <li>A coercive control explainer, taken through three drafting rounds, citing the firm's principal solicitor and a named NSW Domestic Violence Death Review Team statistic</li>
+      </ul>
+    </div>
+
+    <h4 class="label">Organic search, first half of tenure vs. second half</h4>
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <span class="stat-value">9,296</span>
+        <span class="stat-label">sessions <span class="delta up">+0.5%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">60.3%</span>
+        <span class="stat-label">engagement rate <span class="delta down">-3.6 pts</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">565</span>
+        <span class="stat-label">leads <span class="delta up">+2.4%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">4.59%</span>
+        <span class="stat-label">lead rate <span class="delta up">+6.7%</span></span>
+      </div>
+    </div>
+    <p class="table-foot">Source: Google Analytics 4, morrisonslaw.com.au. Organic Search channel, Jul–Dec 2025 vs. Jan–Jun 2026.</p>
+
+    <p class="caveat">Full honesty: this account is essentially flat, not a growth story. Sessions and leads both moved less than 3%, and engagement rate actually dropped. The AEO audit and the content work above are the more interesting deliverables here: this is what a stable, low-drama account looks like next to the others.</p>
+  </section>
+
+  <section class="case">
+    <div class="case-head">
+      <p class="eyebrow accent">The Beauty Chef</p>
+      <h3>Wellness &amp; skincare-supplement e-commerce</h3>
+      <p class="tenure">WebProfits · July 2025 – present · thebeautychef.com</p>
+    </div>
+
+    <p class="lede">I own the organic content and on-page strategy across the highest-traffic category and product pages, using a Claude Code skill (beauty-chef-collections) built for this account's format, plus the content and UX copy behind the product-match quiz that qualifies visitors into the right product earlier in the journey.</p>
+
+    <div class="hero-stat">
+      <span class="hero-value">+85%</span>
+      <span class="hero-caption">organic-attributed revenue growth, first half of my tenure vs. the second half</span>
+    </div>
+
+    <h4 class="label">Organic + organic social, first half of tenure vs. second half</h4>
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <span class="stat-value">52,001</span>
+        <span class="stat-label">landed users <span class="delta up">+20.6%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">2,743</span>
+        <span class="stat-label">buyers <span class="delta up">+94.0%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">5.27%</span>
+        <span class="stat-label">conversion rate <span class="delta up">+60.7%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">$353.7K</span>
+        <span class="stat-label">revenue <span class="delta up">+85.3%</span></span>
+      </div>
+    </div>
+    <p class="table-foot">Source: Google Analytics 4 events export, thebeautychef.com. Organic search and organic social only.</p>
+
+    <p class="caveat">Purchases grew faster than any other funnel stage (+90.4%, against +20.1% landed sessions): the funnel got tighter, not just bigger. The product-match quiz nearly doubled its reach at a steady completion rate.</p>
+  </section>
+
+  <section class="case">
+    <div class="case-head">
+      <p class="eyebrow accent">ATA Scientific</p>
+      <h3>Lab &amp; scientific equipment: recovery after inheriting a decline</h3>
+      <p class="tenure">Particle characterisation, spectroscopy, and imaging instruments</p>
+    </div>
+
+    <p class="lede">I took this account over mid-decline. Organic traffic kept softening for about three more months while a site-wide technical picture came together, typical of the lag between diagnosis and ranking response, before turning around in March 2026.</p>
+
+    <div class="hero-stat">
+      <span class="hero-value">+46%</span>
+      <span class="hero-caption">organic leads, month-over-month: the strongest organic conversion month in recent history</span>
+    </div>
+
+    <h4 class="label">Organic search, first half of tenure vs. second half</h4>
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <span class="stat-value">24,169</span>
+        <span class="stat-label">sessions <span class="delta down">-7.3%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">51.8%</span>
+        <span class="stat-label">engagement rate <span class="delta down">-3.2 pts</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">102</span>
+        <span class="stat-label">leads <span class="delta up">+20.0%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">0.42%</span>
+        <span class="stat-label">lead rate <span class="delta up">+29.4%</span></span>
+      </div>
+    </div>
+    <p class="table-foot">Source: Google Analytics 4, atascientific.com.au. Organic Search channel, Jul–Dec 2025 vs. Jan–Jun 2026.</p>
+
+    <p class="caveat">This is the inherited-decline part of the story: sessions fell 7.3% across the two halves of my tenure, in line with the wider 13-month trend below. But leads still grew 20%, and the lead rate improved 29%: fewer sessions converting meaningfully better, before the more recent month-over-month recovery kicked in.</p>
+
+    <h4 class="label" style="margin-top:1.8rem;">Most recent month: March vs. February 2026</h4>
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <span class="stat-value">4,842</span>
+        <span class="stat-label">organic sessions <span class="delta up">+9.0%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">3,754</span>
+        <span class="stat-label">organic users <span class="delta up">+6.8%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">19</span>
+        <span class="stat-label">organic leads <span class="delta up">+46.2%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">4,862</span>
+        <span class="stat-label">GSC clicks, trailing 90 days</span>
+      </div>
+    </div>
+    <p class="table-foot">Source: GA4 + Google Search Console, atascientific.com.au. Search Console figures cover the trailing 90 days at avg. position 7.5.</p>
+
+    <h4 class="label" style="margin-top:1.8rem;">What I built</h4>
+    <div class="owned">
+      <ul>
+        <li>A Python + GA4 (via MCP) + DataForSEO audit pipeline combining sitemap, crawl, backlinks, and live analytics into one master URL map</li>
+        <li>4,898 URLs mapped, 2,216 indexable, 1,008 pages redirect-mapped ahead of a full site migration</li>
+      </ul>
+    </div>
+
+    <p class="caveat">Full honesty on the trend: organic sessions are down over the trailing 13 months (7,886 in March 2025 to 4,842 in March 2026), a decline that started well before I took the account over, continued for roughly three months into my tenure, and has now turned the corner. I'm showing both numbers because the recovery is the story, not a cropped chart.</p>
+  </section>
+
+  <!-- TIER 3 -->
+  <div class="tier-head">
+    <p class="tier-number">03</p>
+    <h2>Supporting tooling</h2>
+    <p class="tier-desc">Not content automation: data tooling that informs strategy. Included because the job asks for AI-automation experience broadly, and this is where research and analysis are automated even though the writing isn't.</p>
+  </div>
+
+  <section class="case">
+    <div class="case-head">
+      <p class="eyebrow accent">SharkNinja: Shark Clean &amp; Ninja Kitchen</p>
+      <h3>Product e-commerce, Australia: organic SEO &amp; AEO</h3>
+      <p class="tenure">WebProfits · July 2025 – present · sharkclean.com.au</p>
+    </div>
+
+    <p class="lede">I own the organic SEO and AEO content strategy for existing and upcoming products. DataForSEO and Python scripts handle keyword research and competitive analysis; the content strategy and page rebuilds are manual, informed by that analysis rather than generated by it.</p>
+
+    <div class="hero-stat">
+      <span class="hero-value">+57%</span>
+      <span class="hero-caption">relative increase in organic search conversion rate, first half of my tenure vs. the second half</span>
+    </div>
+
+    <h4 class="label">Organic search channel, GA4: first half of tenure vs. second half</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="num">Jul–Dec 2025</th>
+            <th class="num">Jan–Jun 2026</th>
+            <th class="num">Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric-name">Sessions</td>
+            <td class="num">369,842</td>
+            <td class="num">345,015</td>
+            <td class="num delta down">−6.7%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Engagement rate</td>
+            <td class="num">63.0%</td>
+            <td class="num">68.9%</td>
+            <td class="num delta up">+5.9 pts</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Organic revenue</td>
+            <td class="num">$1,373,371</td>
+            <td class="num">$1,829,757</td>
+            <td class="num delta up">+33%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Ecommerce purchases</td>
+            <td class="num">5,558</td>
+            <td class="num">8,127</td>
+            <td class="num delta up">+46%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Conversion rate</td>
+            <td class="num">1.50%</td>
+            <td class="num">2.36%</td>
+            <td class="num delta up">+57%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Revenue / session</td>
+            <td class="num">$3.71</td>
+            <td class="num">$5.30</td>
+            <td class="num delta up">+43%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-foot">Source: Google Analytics 4, Property: sharkclean.com.au. Organic Search channel only.</p>
+
+    <p class="caveat">Organic sessions dipped slightly while conversion rate, revenue per session, and total organic revenue all grew substantially: the traffic became meaningfully more qualified, not just larger.</p>
+  </section>
+
+  <footer>
+    <span><strong>Josette Bartolome</strong> · SEO Strategist</span>
+    <span>jddbartolome@gmail.com</span>
+  </footer>
+
+</div>
