@@ -1,0 +1,696 @@
+<title>Adex, SharkNinja &amp; The Beauty Chef: Performance Follow-Up</title>
+<style>
+  :root {
+    --paper: #F1F2EC;
+    --paper-raised: #E8EAE2;
+    --ink: #1B2320;
+    --ink-muted: #5B695E;
+    --ink-faint: #8A9690;
+    --accent: #2F6B4A;
+    --accent-strong: #1F5138;
+    --accent-soft: #DCE8DE;
+    --line: rgba(27, 35, 32, 0.14);
+    --line-strong: rgba(27, 35, 32, 0.26);
+    --note: #8A6A2F;
+
+    --font-display: ui-serif, "New York", "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --font-data: ui-monospace, "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141815;
+      --paper-raised: #1B211D;
+      --ink: #E9ECE7;
+      --ink-muted: #A6B3A9;
+      --ink-faint: #6C776F;
+      --accent: #6FBF8B;
+      --accent-strong: #8ED1A5;
+      --accent-soft: #1E2E22;
+      --line: rgba(233, 236, 231, 0.14);
+      --line-strong: rgba(233, 236, 231, 0.26);
+      --note: #D9B368;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #141815;
+    --paper-raised: #1B211D;
+    --ink: #E9ECE7;
+    --ink-muted: #A6B3A9;
+    --ink-faint: #6C776F;
+    --accent: #6FBF8B;
+    --accent-strong: #8ED1A5;
+    --accent-soft: #1E2E22;
+    --line: rgba(233, 236, 231, 0.14);
+    --line-strong: rgba(233, 236, 231, 0.26);
+    --note: #D9B368;
+  }
+
+  :root[data-theme="light"] {
+    --paper: #F1F2EC;
+    --paper-raised: #E8EAE2;
+    --ink: #1B2320;
+    --ink-muted: #5B695E;
+    --ink-faint: #8A9690;
+    --accent: #2F6B4A;
+    --accent-strong: #1F5138;
+    --accent-soft: #DCE8DE;
+    --line: rgba(27, 35, 32, 0.14);
+    --line-strong: rgba(27, 35, 32, 0.26);
+    --note: #8A6A2F;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { font-size: 17px; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4.5rem) clamp(1.25rem, 5vw, 2rem) 5rem;
+  }
+
+  a { color: var(--accent-strong); }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 0 0 0.6rem;
+  }
+
+  .eyebrow.accent { color: var(--accent-strong); }
+
+  .masthead {
+    padding-bottom: 2.25rem;
+    border-bottom: 1px solid var(--line-strong);
+    margin-bottom: 3rem;
+    animation: rise 0.6s ease-out both;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.85rem;
+    text-wrap: balance;
+  }
+
+  .dek {
+    font-size: 1.02rem;
+    color: var(--ink-muted);
+    max-width: 38rem;
+    margin: 0 0 1.4rem;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  .meta-row .divider { opacity: 0.6; }
+
+  .case {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .case:last-of-type { border-bottom: none; }
+
+  .case-head { margin-bottom: 1.4rem; }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.3rem, 3vw, 1.55rem);
+    line-height: 1.28;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+
+  .tenure {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    margin: 0;
+  }
+
+  .lede {
+    font-size: 1rem;
+    max-width: 40rem;
+    margin: 1.3rem 0 1.8rem;
+  }
+
+  h3.label {
+    font-family: var(--font-body);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 0.9rem;
+  }
+
+  .owned ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .owned li {
+    position: relative;
+    padding-left: 1.05rem;
+    font-size: 0.95rem;
+  }
+
+  .owned li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem 1.6rem;
+    margin: 1.8rem 0;
+  }
+
+  @media (min-width: 560px) {
+    .stat-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .stat-tile {
+    border-top: 2px solid var(--ink);
+    padding-top: 0.6rem;
+  }
+
+  .stat-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.55rem;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-top: 0.3rem;
+  }
+
+  .outcome-panel {
+    background: var(--accent-soft);
+    padding: 1.6rem 1.7rem;
+    margin-top: 1.6rem;
+  }
+
+  .outcome-panel .label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+    margin: 0 0 1rem;
+  }
+
+  .compare-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+  }
+
+  .compare-block { display: flex; flex-direction: column; }
+
+  .compare-value {
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .compare-tag {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-top: 0.3rem;
+  }
+
+  .compare-arrow {
+    font-size: 1.3rem;
+    color: var(--ink-faint);
+    padding-bottom: 0.4rem;
+  }
+
+  .caveat {
+    font-size: 0.87rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    margin: 1.1rem 0 0;
+    max-width: 34rem;
+  }
+
+  .hero-stat {
+    margin: 2rem 0 1.8rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-value {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 8vw, 3.4rem);
+    line-height: 1;
+    color: var(--accent-strong);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hero-caption {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    max-width: 20rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1.6rem 0 0.6rem;
+    border-top: 1px solid var(--line-strong);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    min-width: 34rem;
+  }
+
+  thead th {
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding: 0.7rem 0.6rem 0.6rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  th.num, td.num { text-align: right; }
+
+  tbody td {
+    padding: 0.7rem 0.6rem;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--font-data);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  tbody td.metric-name {
+    font-family: var(--font-body);
+    white-space: normal;
+  }
+
+  .trend-cell { width: 6.5rem; }
+
+  .trend {
+    position: relative;
+    height: 1rem;
+    width: 100%;
+  }
+
+  .trend .track {
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: var(--line-strong);
+    transform: translateY(-50%);
+  }
+
+  .trend .dot {
+    position: absolute;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    transform: translate(-50%, -50%);
+  }
+
+  .trend .dot.start { background: var(--ink-faint); }
+  .trend .dot.end.up { background: var(--accent); }
+  .trend .dot.end.down { background: var(--note); }
+
+  .delta {
+    font-weight: 600;
+  }
+
+  .delta.up { color: var(--accent-strong); }
+  .delta.down { color: var(--note); }
+
+  .table-foot {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin: 0.7rem 0 0;
+  }
+
+  .closing {
+    margin-top: 2.5rem;
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--line-strong);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+  }
+
+  footer strong { color: var(--ink-muted); font-weight: 600; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .masthead { animation: none; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <h1>Adex Group, SharkNinja &amp; The Beauty Chef: the numbers behind the live interview</h1>
+    <p class="dek">Follow-up to our call on 3 July 2026: what I owned on each account, what changed, and the real results, sourced directly from the account data.</p>
+    <div class="meta-row">
+      <span>Josette Bartolome</span>
+      <span class="divider">·</span>
+      <span>7 July 2026</span>
+    </div>
+  </header>
+
+  <section class="case">
+    <div class="case-head">
+      <p class="eyebrow accent">Adex Group</p>
+      <h2>Mezzanine floors &amp; warehouse space optimisation: B2B, organic only</h2>
+      <p class="tenure">Brighta Group · May 2023 – October 2025 · Organic search owned end to end; paid handled by a separate team</p>
+    </div>
+
+    <p class="lede">Adex Group (adexgroup.com.au) sells mezzanine floor and warehouse space solutions to contractors, procurement officers, and facilities managers, a considered, quote-driven buying journey close to Matic's. I ran the full organic engagement: audit, keyword and content strategy, and technical fixes.</p>
+
+    <h3 class="label">What I owned</h3>
+    <div class="owned">
+      <ul>
+        <li>Full site audit, competitor keyword research, and content gap analysis to find ranking opportunities</li>
+        <li>Technical fixes: uncrawlable pages, a 404, a broken internal link, and an HTTPS-to-HTTP redirect</li>
+        <li>Restructured category and solution pages to address a high bounce rate and unclear navigation</li>
+        <li>Content strategy across 7 monthly phases, targeting commercial, long-tail terms like "mezzanine floor racking system" and "how much does it cost to build a mezzanine floor"</li>
+      </ul>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <span class="stat-value">$7.7K</span>
+        <span class="stat-label">AUD/mo retainer managed</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">~11,000</span>
+        <span class="stat-label">words of new/optimised content</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">7</span>
+        <span class="stat-label">monthly content &amp; keyword phases</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">4</span>
+        <span class="stat-label">technical issues found &amp; resolved</span>
+      </div>
+    </div>
+
+    <h3 class="label">Site inquiry data (partial window)</h3>
+    <p class="lede" style="margin-top:0;">I no longer have GA4 or Search Console access to Adex, so I can't show a full trend across the two-plus years I worked on the account. The only visibility I still have is the site's own contact-form log, which only goes back to five months before handover:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th class="num">Duration</th>
+            <th class="num">Genuine inquiries</th>
+            <th class="num">Rate / mo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric-name">Final months of my tenure (27 May – 31 Oct 2025)</td>
+            <td class="num">~5 mo</td>
+            <td class="num">17</td>
+            <td class="num">~3.4</td>
+          </tr>
+          <tr>
+            <td class="metric-name">After handover (Nov 2025 – Jul 2026)</td>
+            <td class="num">~9 mo</td>
+            <td class="num">74</td>
+            <td class="num">~8.0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-foot">Source: Adex Group site contact-form submissions, filtered for spam, job enquiries, and paid-channel (Google Ads) leads.</p>
+
+    <p class="caveat">This is a five-month window, not a two-year trend, so I'd treat it as a data point rather than a verdict. The increase after handover is consistent with the usual 3–6 month lag between SEO/content work and ranking maturity, but I can't rule out other contributors (a successor's changes, seasonality, ad spend), and I don't have the earlier data needed to show the account's full trajectory.</p>
+  </section>
+
+  <section class="case">
+    <div class="case-head">
+      <p class="eyebrow accent">SharkNinja: Shark Clean &amp; Ninja Kitchen</p>
+      <h2>Product e-commerce, Australia: organic SEO &amp; AEO</h2>
+      <p class="tenure">WebProfits · July 2025 – present · sharkclean.com.au</p>
+    </div>
+
+    <p class="lede">SharkNinja is the global consumer appliance company behind Shark (vacuums and home cleaning appliances) and Ninja (kitchen appliances: air fryers, blenders, cookers). sharkclean.com.au is their direct-to-consumer e-commerce storefront for the Australian market, high-volume, high-SKU-count product pages where category and product-page SEO drive purchases directly. I own the organic SEO and AEO content strategy for existing and upcoming products: rebuilding page outlines, researching the questions buyers and LLMs ask about each product and brand, and preparing new product pages ahead of launch with the product team.</p>
+
+    <div class="hero-stat">
+      <span class="hero-value">+57%</span>
+      <span class="hero-caption">relative increase in organic search conversion rate, first half of my tenure vs. the second half</span>
+    </div>
+
+    <h3 class="label">Organic search channel, GA4: first half of tenure vs. second half</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="num">Jul–Dec 2025</th>
+            <th class="num">Jan–Jun 2026</th>
+            <th>Trend</th>
+            <th class="num">Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric-name">Sessions</td>
+            <td class="num">369,842</td>
+            <td class="num">345,015</td>
+            <td class="trend-cell">
+              <div class="trend"><div class="track"></div>
+                <div class="dot start" style="left:92%"></div>
+                <div class="dot end down" style="left:8%"></div>
+              </div>
+            </td>
+            <td class="num delta down">−6.7%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Engagement rate</td>
+            <td class="num">63.0%</td>
+            <td class="num">68.9%</td>
+            <td class="trend-cell">
+              <div class="trend"><div class="track"></div>
+                <div class="dot start" style="left:8%"></div>
+                <div class="dot end up" style="left:92%"></div>
+              </div>
+            </td>
+            <td class="num delta up">+5.9 pts</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Organic revenue</td>
+            <td class="num">$1,373,371</td>
+            <td class="num">$1,829,757</td>
+            <td class="trend-cell">
+              <div class="trend"><div class="track"></div>
+                <div class="dot start" style="left:8%"></div>
+                <div class="dot end up" style="left:92%"></div>
+              </div>
+            </td>
+            <td class="num delta up">+33%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Ecommerce purchases</td>
+            <td class="num">5,558</td>
+            <td class="num">8,127</td>
+            <td class="trend-cell">
+              <div class="trend"><div class="track"></div>
+                <div class="dot start" style="left:8%"></div>
+                <div class="dot end up" style="left:92%"></div>
+              </div>
+            </td>
+            <td class="num delta up">+46%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Conversion rate</td>
+            <td class="num">1.50%</td>
+            <td class="num">2.36%</td>
+            <td class="trend-cell">
+              <div class="trend"><div class="track"></div>
+                <div class="dot start" style="left:8%"></div>
+                <div class="dot end up" style="left:92%"></div>
+              </div>
+            </td>
+            <td class="num delta up">+57%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Revenue / session</td>
+            <td class="num">$3.71</td>
+            <td class="num">$5.30</td>
+            <td class="trend-cell">
+              <div class="trend"><div class="track"></div>
+                <div class="dot start" style="left:8%"></div>
+                <div class="dot end up" style="left:92%"></div>
+              </div>
+            </td>
+            <td class="num delta up">+43%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-foot">Source: Google Analytics 4, Account: SharkNinja, Property: sharkclean.com.au. Organic Search channel only.</p>
+
+    <p class="caveat">Organic sessions dipped slightly while conversion rate, revenue per session, and total organic revenue all grew substantially: the traffic became meaningfully more qualified, not just larger, in line with the client's goal of being found and cited by the right buyers rather than maximising raw traffic.</p>
+  </section>
+
+  <section class="case">
+    <div class="case-head">
+      <p class="eyebrow accent">The Beauty Chef</p>
+      <h2>Wellness &amp; skincare-supplement e-commerce: organic SEO &amp; CRO</h2>
+      <p class="tenure">WebProfits · July 2025 – present · thebeautychef.com</p>
+    </div>
+
+    <p class="lede">The Beauty Chef is an Australian wellness brand selling gut-health powders, collagen blends, and beauty tonics direct-to-consumer. I own the organic content and on-page strategy across the highest-traffic category and product pages, and worked on the content and UX copy behind the product-match quiz to qualify visitors into the right product earlier in the journey, alongside monitoring emerging channels like AI-assistant referral traffic.</p>
+
+    <div class="hero-stat">
+      <span class="hero-value">+85%</span>
+      <span class="hero-caption">organic-attributed revenue growth, first half of my tenure vs. the second half</span>
+    </div>
+
+    <h3 class="label">Organic + organic social, first half of tenure vs. second half</h3>
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <span class="stat-value">52,001</span>
+        <span class="stat-label">landed users <span class="delta up">+20.6%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">2,743</span>
+        <span class="stat-label">buyers <span class="delta up">+94.0%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">5.27%</span>
+        <span class="stat-label">conversion rate <span class="delta up">+60.7%</span></span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-value">$353.7K</span>
+        <span class="stat-label">revenue <span class="delta up">+85.3%</span></span>
+      </div>
+    </div>
+
+    <h3 class="label" style="margin-top:1.8rem;">Funnel, H2 2025 vs. H1 2026</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th class="num">H2 2025</th>
+            <th class="num">H1 2026</th>
+            <th class="num">Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric-name">Landed</td>
+            <td class="num">41,612</td>
+            <td class="num">49,985</td>
+            <td class="num delta up">+20.1%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Viewed a product</td>
+            <td class="num">20,013</td>
+            <td class="num">25,926</td>
+            <td class="num delta up">+29.6%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Added to cart</td>
+            <td class="num">3,066</td>
+            <td class="num">4,991</td>
+            <td class="num delta up">+62.8%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Began checkout</td>
+            <td class="num">1,691</td>
+            <td class="num">2,244</td>
+            <td class="num delta up">+32.7%</td>
+          </tr>
+          <tr>
+            <td class="metric-name">Purchased</td>
+            <td class="num">1,330</td>
+            <td class="num">2,533</td>
+            <td class="num delta up">+90.4%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-foot">Source: Google Analytics 4 events export, thebeautychef.com. Scope: organic search and organic social only, excludes paid/direct/email/affiliate.</p>
+
+    <p class="caveat">Every funnel stage grew, but purchases grew fastest, up 90.4% against a 20.1% lift in landed sessions: the funnel didn't just get bigger, it got tighter. Cart-to-purchase (buyer basis) improved from 43.4% to 50.8%. The product-match quiz nearly doubled its reach (1.45% to 2.89% of landed visitors) at a steady completion rate, meaning more visitors are trying it, not just finishing it more often.</p>
+  </section>
+
+  <footer>
+    <span><strong>Josette Bartolome</strong> · SEO Strategist</span>
+    <span>jddbartolome@gmail.com</span>
+  </footer>
+
+</div>
