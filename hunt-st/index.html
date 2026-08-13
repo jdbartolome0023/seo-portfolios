@@ -1,0 +1,284 @@
+<title>Hunt St Interview Answers</title>
+<style>
+  :root {
+    --bg: #f0eee7;
+    --surface: #fffefb;
+    --ink: #211f19;
+    --ink-soft: #5c584c;
+    --ink-faint: #8a8576;
+    --accent: #2f5d50;
+    --accent-soft: #e2e9e2;
+    --accent-ink: #23473d;
+    --rule: #dcd7c9;
+    --rule-soft: #e9e5d9;
+    --max: 700px;
+    --stat-num: #1c3a32;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17160f;
+      --surface: #1e1d16;
+      --ink: #ece7d9;
+      --ink-soft: #aca691;
+      --ink-faint: #7c7768;
+      --accent: #6cba9f;
+      --accent-soft: #223129;
+      --accent-ink: #9adcc2;
+      --rule: #35331f;
+      --rule-soft: #292716;
+      --stat-num: #8fd6bb;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #17160f;
+    --surface: #1e1d16;
+    --ink: #ece7d9;
+    --ink-soft: #aca691;
+    --ink-faint: #7c7768;
+    --accent: #6cba9f;
+    --accent-soft: #223129;
+    --accent-ink: #9adcc2;
+    --rule: #35331f;
+    --rule-soft: #292716;
+    --stat-num: #8fd6bb;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: ui-sans-serif, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 5rem;
+  }
+
+  .letterhead {
+    padding-bottom: 2.2rem;
+    margin-bottom: 2.8rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+  }
+
+  .name-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 0.9rem;
+    margin: 0.75rem 0 1.6rem;
+  }
+
+  .name-row .name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    border: 1px solid var(--accent);
+    padding: 0.18rem 0.5rem;
+  }
+
+  h1 {
+    font-family: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: clamp(1.7rem, 4.6vw, 2.35rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  .sub-line {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 52ch;
+  }
+
+  .stat-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.8rem 2.6rem;
+    margin-top: 2rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .stat-num {
+    font-family: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--stat-num);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .stat-cap {
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    max-width: 20ch;
+  }
+
+  section.answer {
+    margin-bottom: 3rem;
+  }
+
+  .q-label {
+    font-family: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  h2 {
+    font-family: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 1.32rem;
+    font-weight: 600;
+    margin: 0 0 1.4rem;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+
+  .answer p {
+    font-size: 1rem;
+    margin: 0 0 1.15rem;
+    max-width: 66ch;
+  }
+
+  .answer p:last-of-type { margin-bottom: 0; }
+
+  blockquote {
+    margin: 1.6rem 0 0;
+    padding: 0.9rem 0 0.9rem 1.2rem;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    font-size: 0.98rem;
+    color: var(--ink);
+    font-style: italic;
+  }
+
+  blockquote p { margin: 0; max-width: none; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0 0 3rem;
+  }
+
+  .field-note {
+    font-size: 0.86rem;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--rule);
+    padding-top: 1.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .field-note strong { color: var(--ink-soft); }
+</style>
+
+<div class="page">
+
+  <header class="letterhead">
+    <div class="eyebrow">Written Interview Answers &middot; Hunt St 007-1089</div>
+    <div class="name-row">
+      <span class="name">Josette Bartolome</span>
+      <div class="tags">
+        <span class="tag">Google Ads</span>
+        <span class="tag">Meta Ads</span>
+        <span class="tag">SEO</span>
+      </div>
+    </div>
+
+    <h1>I don't just run campaigns. I verify the numbers behind them.</h1>
+    <p class="sub-line">Full written answers for the Digital Marketing Specialist (Meta, Google, SEO) role, submitted alongside video responses.</p>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-cap">channels covered across my WebProfits accounts</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">211x &rarr; 7x</div>
+        <div class="stat-cap">Meta ROAS, corrected against real orders</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2026</div>
+        <div class="stat-cap">ongoing: WebProfits account management</div>
+      </div>
+    </div>
+  </header>
+
+  <section class="answer">
+    <div class="q-label">Question 1</div>
+    <h2>Introduce yourself and walk us through your digital marketing experience</h2>
+
+    <p>I'm Josette, a digital marketing specialist based in the Philippines, currently managing accounts through WebProfits across Google Ads, Meta Ads, and SEO for Australia-based clients.</p>
+
+    <p>On the Google Ads side, I manage a live account for an Australian fuel and heating retailer client, running Search, Shopping, and PMax campaigns. My day-to-day includes keyword and negative keyword management, budget allocation within an approved spend envelope, Shopping feed health such as product approvals and image or label fixes, campaign structure cleanup, and weekly and monthly reporting tied to actual profitability, not just platform metrics.</p>
+
+    <p>For Meta Ads, I run full-funnel campaigns for the same client, covering audience and creative structure, pixel and conversion tracking, and budget pacing. I recently led a tracking audit that uncovered a real discrepancy between Meta's reported ROAS and the client's actual store revenue, which I go into in more detail in the second question.</p>
+
+    <p>On SEO, I work across multiple client accounts through WebProfits, including tour operators and service businesses. That covers content strategy, on-page SEO, content briefs, keyword research, E-E-A-T audits, SEO SWOT analysis, and ongoing content series tied to real search demand data.</p>
+
+    <p>Across all of this, I work directly with tools like Google Search Console, GA4, DataForSEO, and the Google and Meta APIs themselves for reporting and diagnostics, so I'm comfortable going past the ad platform's dashboard when something doesn't add up.</p>
+
+    <blockquote><p>What ties all of this together for me is that I don't just run campaigns, I verify the numbers behind them. Tracking accuracy, attribution, real business outcomes. That's what I check before I call anything a success.</p></blockquote>
+  </section>
+
+  <hr class="divider">
+
+  <section class="answer">
+    <div class="q-label">Question 2</div>
+    <h2>A successful campaign or project: role, strategies, tools, and results</h2>
+
+    <p>I'll walk through one account relationship at WebProfits where I've driven results across all three channels: Google, Meta, and SEO.</p>
+
+    <p>Starting with Google Ads, I'm the sole person managing the account across Search, Shopping, and PMax for an Australian fuel and heating retailer client. On the research side, I use search term reports and direct GAQL queries to catch negative keyword gaps early, along with product-level Shopping feed diagnostics to catch disapprovals before they cost visibility. I inherited an existing account, so setup meant restructuring ad groups around the client's actual product categories, adding phrase-match coverage, and setting budget rules that stay inside the client's approved spend envelope. Strategically, I prioritize spend toward what already converts, Shopping and PMax, while cleaning up wasted Search spend, and I treat the budget as one envelope to reallocate within rather than siloing it per campaign. Using the Google Ads API and Merchant Center, the result has been a healthier account structure, resolved feed disapprovals that were limiting Shopping visibility, and more efficient spend inside the same budget.</p>
+
+    <p>On Meta Ads, for the same client, I have full ownership of the ads, tracking diagnostics, and client reporting. My research involves interest, behavior, and demographic research to define audiences for each funnel stage, plus audience-size estimation before committing budget to a new set. On the setup side, I built out the campaign, ad set, and creative structure end to end across top-of-funnel and bottom-of-funnel, including pixel and conversion event setup. Here's where it gets interesting: I found that Meta's platform-reported ROAS was badly overstated, roughly 211x, when the real number, once corrected, was closer to 7x. That came down to a mix of consent-gated pixel data and Meta over-attributing purchases compared to the client's actual WooCommerce orders. So my strategy was to cross-check Meta's reported purchases against real WooCommerce order data instead of trusting the platform number, diagnose a dead GA4 purchase-tracking setup (a plugin removal had silently killed the account's only purchase event), and rebuild it through GTM. I also rebuilt the client's reporting around a real profitability framework, mapping actual margin percentages by product category so reports show real profit instead of an inflated ROAS number. I told the client the truth in both directions: the platform overstates results, but the store's own tracking undercounts them too, so I gave them the honest range rather than a flattering headline number. Using Meta's Ads Manager and API, GA4, Google Tag Manager, and the WooCommerce order data, the client now has trustworthy reporting instead of a vanity metric, which sets up much better budget decisions going forward.</p>
+
+    <p>On SEO, also through WebProfits, I handle content strategy and on-page SEO across a client portfolio. My research process uses keyword research tools, competitor content-gap analysis, and People-Also-Ask and SERP research to find what's genuinely missing on a client's site before I write a brief. On the technical side, I run site-wide audits across every page in a content series, not just one-off pages, checking FAQ and Article schema, mobile breadcrumb behavior, duplicate headings, and alt text, along with E-E-A-T reviews of off-site reputation, reviews, and trust signals. I also factor in AI search, structuring content to be directly answerable by AI answer engines alongside traditional search, which I've applied on portfolio work like an AEO project for SharkNinja. Strategically, that means building recurring, template-driven content series grounded in real search demand rather than one-off pages. Using keyword research tools, Search Console, and on-page content audits, the result is a consistent, data-backed content pipeline instead of ad hoc pages, with every piece tied to actual search demand.</p>
+
+    <blockquote><p>Across all three, the pattern is the same. I don't trust the platform's headline number by default. I check it against real data, actual orders, real search performance, real feed status, before I decide what success actually looks like for the client.</p></blockquote>
+  </section>
+
+  <div class="field-note"><strong>Note:</strong> these written answers accompany the video responses submitted through Hunt St's assessment platform and reflect the same points in full.</div>
+
+</div>
